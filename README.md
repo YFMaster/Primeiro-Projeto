@@ -87,18 +87,21 @@ mydjangoapp/
 $ git clone https://github.com/seu-usuario/mydjangoapp.git
 $ cd mydjangoapp
 
-# 2. Copie variáveis de ambiente
+# 2. Instale os hooks do pre-commit
+$ pre-commit install
+
+# 3. Copie variáveis de ambiente
 $ cp .env.example .env
 
-# 3. Build + up
+# 4. Build + up
 $ docker compose -f compose/development.yml build
 $ docker compose -f compose/development.yml up -d
 
-# 4. Migrações e usuário admin
+# 5. Migrações e usuário admin
 $ docker compose exec web python manage.py migrate
 $ docker compose exec web python manage.py createsuperuser
 
-# 5. Acesse
+# 6. Acesse
 Abra http://localhost:8000 🇧🇷
 ```
 
@@ -106,9 +109,10 @@ Abra http://localhost:8000 🇧🇷
 
 1. Instale Python 3.12 + e Poetry
 2. `poetry install`
-3. Configure PostgreSQL e crie banco `mydjangoapp`
-4. `cp .env.example .env`
-5. `python manage.py migrate && python manage.py runserver`
+3. `pre-commit install`
+4. Configure PostgreSQL e crie banco `mydjangoapp`
+5. `cp .env.example .env`
+6. `python manage.py migrate && python manage.py runserver`
 
 ---
 
