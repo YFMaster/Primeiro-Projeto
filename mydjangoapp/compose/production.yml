@@ -5,6 +5,7 @@ services:
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.prod
+      - CELERY_BROKER_URL=redis://redis:6379/0
     ports:
       - "8000:8000"
   worker:
@@ -12,3 +13,8 @@ services:
     command: celery -A config worker -l info
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.prod
+      - CELERY_BROKER_URL=redis://redis:6379/0
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
