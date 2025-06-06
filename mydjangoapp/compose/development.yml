@@ -9,6 +9,7 @@ services:
       - "8000:8000"
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.dev
+      - CELERY_BROKER_URL=redis://redis:6379/0
   worker:
     build: .
     command: celery -A config worker -l info
@@ -16,5 +17,11 @@ services:
       - .:/code
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.dev
+      - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:
       - web
+      - redis
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
