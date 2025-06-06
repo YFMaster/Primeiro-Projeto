@@ -212,7 +212,7 @@ bandit -r apps/                    # segurança estática
 
 ## Licença
 
-Distribuído sob a licença **MIT**. Veja `LICENSE` para detalhes.
+Distribuído sob a licença **MIT**. Consulte o arquivo [LICENSE](LICENSE) para detalhes.
 
 ---
 
