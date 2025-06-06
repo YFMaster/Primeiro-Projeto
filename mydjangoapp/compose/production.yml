@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  web:
+    build: .
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.prod
+    ports:
+      - "8000:8000"
+  worker:
+    build: .
+    command: celery -A config worker -l info
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.prod

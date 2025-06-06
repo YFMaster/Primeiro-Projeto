@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <title>Concursos</title>
+</head>
+<body>
+<h1>Concursos Abertos</h1>
+<form method="get">
+    <input type="text" name="q" placeholder="Buscar" value="{{ request.GET.q }}">
+    <input type="text" name="state" placeholder="UF" value="{{ request.GET.state }}">
+    <button type="submit">Filtrar</button>
+</form>
+<ul>
+{% for contest in contests %}
+    <li><a href="{{ contest.url }}">{{ contest.title }}</a> - {{ contest.state }}</li>
+{% empty %}
+    <li>Nenhum concurso encontrado.</li>
+{% endfor %}
+</ul>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "mydjangoapp"
+version = "0.1.0"
+description = "Coleta editais do PCI Concursos"
+authors = ["Seu Nome <voce@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.2"
+celery = "^5.3"
+requests = "^2.31"
+beautifulsoup4 = "^4.12"
+
+[tool.poetry.dev-dependencies]
+pytest = "^8.2"
+ruff = "^0.1"
+black = "^23.7"
