@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 class Contest(models.Model):
@@ -9,3 +10,15 @@ class Contest(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Favorite(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("user", "contest")
+
+    def __str__(self) -> str:  # pragma: no cover - simple
+        return f"{self.user} -> {self.contest}"
