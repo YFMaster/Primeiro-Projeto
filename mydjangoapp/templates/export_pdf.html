@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Contests</title>
+</head>
+<body>
+    <h1>Concursos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Org</th>
+                <th>UF</th>
+                <th>Data</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contest in contests %}
+            <tr>
+                <td>{{ contest.title }}</td>
+                <td>{{ contest.organization }}</td>
+                <td>{{ contest.state }}</td>
+                <td>{{ contest.deadline }}</td>
+                <td>{{ contest.url }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

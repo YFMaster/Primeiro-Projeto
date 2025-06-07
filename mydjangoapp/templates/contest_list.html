@@ -10,6 +10,10 @@
     <input type="text" name="state" placeholder="UF" value="{{ request.GET.state }}">
     <button type="submit">Filtrar</button>
 </form>
+<p>
+    <a href="{% url 'contest_export' %}?q={{ request.GET.q }}&state={{ request.GET.state }}&format=pdf">Exportar PDF</a> |
+    <a href="{% url 'contest_export' %}?q={{ request.GET.q }}&state={{ request.GET.state }}&format=excel">Exportar Excel</a>
+</p>
 <ul>
 {% for contest in contests %}
     <li><a href="{{ contest.url }}">{{ contest.title }}</a> - {{ contest.state }}</li>
