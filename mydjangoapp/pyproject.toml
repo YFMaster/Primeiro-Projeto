@@ -8,11 +8,13 @@ authors = ["Seu Nome <voce@example.com>"]
 python = "^3.12"
 django = "^5.2"
 celery = "^5.3"
+django-celery-beat = "^2.5"
 requests = "^2.31"
 beautifulsoup4 = "^4.12"
 
 [tool.poetry.dev-dependencies]
 pytest = "^8.2"
+pytest-django = "^4.7"
 ruff = "^0.1"
 black = "^23.7"
 requests-mock = "^1.12"
