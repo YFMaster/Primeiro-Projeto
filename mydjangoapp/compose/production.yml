@@ -14,6 +14,12 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.prod
       - CELERY_BROKER_URL=redis://redis:6379/0
+  beat:
+    build: .
+    command: celery -A config beat -l info -S django
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.prod
+      - CELERY_BROKER_URL=redis://redis:6379/0
   redis:
     image: redis:7-alpine
     ports:

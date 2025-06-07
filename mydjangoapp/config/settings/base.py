@@ -12,6 +12,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_beat',
     'apps.core',
 ]
 MIDDLEWARE = [
@@ -47,3 +48,12 @@ DATABASES = {
 }
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'fetch-contests-every-6-hours': {
+        'task': 'apps.core.tasks.fetch_contests',
+        'schedule': crontab(minute=0, hour='*/6'),
+    }
+}

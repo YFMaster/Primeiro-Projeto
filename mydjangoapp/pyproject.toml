@@ -8,6 +8,7 @@ authors = ["Seu Nome <voce@example.com>"]
 python = "^3.12"
 django = "^5.2"
 celery = "^5.3"
+django-celery-beat = "^2.5"
 requests = "^2.31"
 beautifulsoup4 = "^4.12"
 

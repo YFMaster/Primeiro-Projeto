@@ -156,6 +156,7 @@ railway up
 * Defina variáveis de ambiente no dashboard
 * Serviço web: `gunicorn config.wsgi:application --log-file -`
 * Serviço worker: `celery -A config worker -l info`
+* Serviço beat: `celery -A config beat -l info -S django`
 * Configure autoscale e domínio customizado
 
 ### VPS (Ubuntu 22.04 + Docker)
