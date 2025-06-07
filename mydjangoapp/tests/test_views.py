@@ -27,3 +27,21 @@ class ContestListViewTest(TestCase):
         assert "Concurso B" in content
         assert "Concurso A" not in content
 
+    def test_export_pdf(self):
+        weasyprint = __import__('importlib').import_module('importlib').import_module('weasyprint') if __import__('importlib').import_module('importlib').util.find_spec('weasyprint') else None
+        if not weasyprint:
+            self.skipTest('weasyprint not installed')
+        response = self.client.get(reverse("contest_export") + "?format=pdf")
+        assert response.status_code == 200
+        assert response['Content-Type'] == 'application/pdf'
+        assert response.content.startswith(b'%PDF')
+
+    def test_export_excel(self):
+        openpyxl_spec = __import__('importlib').import_module('importlib').util.find_spec('openpyxl')
+        if not openpyxl_spec:
+            self.skipTest('openpyxl not installed')
+        response = self.client.get(reverse("contest_export") + "?format=excel")
+        assert response.status_code == 200
+        assert response['Content-Type'].startswith('application/vnd.openxmlformats')
+
+
