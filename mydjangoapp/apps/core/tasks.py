@@ -12,5 +12,19 @@ def fetch_contests():
     soup = BeautifulSoup(response.text, 'html.parser')
     # Esta é apenas uma ilustração simplificada
     for item in soup.select('.caixa-organizador li'):
-        title = item.get_text(strip=True)
-        Contest.objects.get_or_create(title=title, url=PCI_URL)
+        text = item.get_text(strip=True)
+        parts = [p.strip() for p in text.split('|')]
+        title = parts[0]
+        job_title = parts[1] if len(parts) > 1 else ''
+        education = parts[2] if len(parts) > 2 else ''
+        salary = int(parts[3]) if len(parts) > 3 and parts[3].isdigit() else None
+
+        Contest.objects.get_or_create(
+            title=title,
+            url=PCI_URL,
+            defaults={
+                'job_title': job_title,
+                'education_level': education,
+                'salary': salary,
+            },
+        )

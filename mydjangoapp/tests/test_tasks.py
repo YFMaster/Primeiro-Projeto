@@ -11,8 +11,8 @@ class FetchContestsTaskTest(TestCase):
         html = """
             <div class='caixa-organizador'>
                 <ul>
-                    <li>Concurso C</li>
-                    <li>Concurso D</li>
+                    <li>Concurso C | Analista | Superior | 7000</li>
+                    <li>Concurso D | Tecnico | Médio | 3000</li>
                 </ul>
             </div>
         """
@@ -20,6 +20,12 @@ class FetchContestsTaskTest(TestCase):
             m.get(PCI_URL, text=html)
             fetch_contests()
 
-        titles = set(Contest.objects.values_list("title", flat=True))
-        assert titles == {"Concurso C", "Concurso D"}
+        c = Contest.objects.get(title="Concurso C")
+        assert c.job_title == "Analista"
+        assert c.education_level == "Superior"
+        assert c.salary == 7000
+        d = Contest.objects.get(title="Concurso D")
+        assert d.job_title == "Tecnico"
+        assert d.education_level == "Médio"
+        assert d.salary == 3000
 

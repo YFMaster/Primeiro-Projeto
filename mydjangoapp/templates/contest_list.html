@@ -8,11 +8,17 @@
 <form method="get">
     <input type="text" name="q" placeholder="Buscar" value="{{ request.GET.q }}">
     <input type="text" name="state" placeholder="UF" value="{{ request.GET.state }}">
+    <input type="text" name="job_title" placeholder="Cargo" value="{{ request.GET.job_title }}">
+    <input type="text" name="education_level" placeholder="Escolaridade" value="{{ request.GET.education_level }}">
+    <input type="text" name="salary" placeholder="Salário mínimo" value="{{ request.GET.salary }}">
     <button type="submit">Filtrar</button>
 </form>
 <ul>
 {% for contest in contests %}
-    <li><a href="{{ contest.url }}">{{ contest.title }}</a> - {{ contest.state }}</li>
+    <li>
+        <a href="{{ contest.url }}">{{ contest.title }}</a> - {{ contest.state }} -
+        {{ contest.job_title }} - {{ contest.education_level }} - {{ contest.salary }}
+    </li>
 {% empty %}
     <li>Nenhum concurso encontrado.</li>
 {% endfor %}
