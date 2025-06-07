@@ -21,6 +21,17 @@ services:
     depends_on:
       - web
       - redis
+  beat:
+    build: .
+    command: celery -A config beat -l info -S django
+    volumes:
+      - .:/code
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.dev
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    depends_on:
+      - web
+      - redis
   redis:
     image: redis:7-alpine
     ports:
